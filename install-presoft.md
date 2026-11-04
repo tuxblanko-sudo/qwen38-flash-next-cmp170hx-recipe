@@ -1,4 +1,4 @@
-
+```
 echo "========== check nvidia ==========="
 lspci -nn | grep -iE 'NVIDIA|10de:20b0|10de:20c2|10de:2082'
 echo "========== install soft ==========="
@@ -65,4 +65,6 @@ nvidia-smi \
 cd ~
 git clone https://github.com/Morrowmake/qwen38-flash-next-cmp170hx-recipe
 cd qwen38-flash-next-cmp170hx-recipe
-./start.sh 
+./start.sh
+
+```
