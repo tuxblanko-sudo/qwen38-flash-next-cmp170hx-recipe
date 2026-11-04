@@ -34,7 +34,21 @@ export NVIDIA_CONTAINER_TOOLKIT_VERSION=1.20.1-1
 sudo apt install -y nvidia-container-toolkit=${NVIDIA_CONTAINER_TOOLKIT_VERSION} nvidia-container-toolkit-base=${NVIDIA_CONTAINER_TOOLKIT_VERSION} libnvidia-container-tools=${NVIDIA_CONTAINER_TOOLKIT_VERSION} libnvidia-container1=${NVIDIA_CONTAINER_TOOLKIT_VERSION}
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-echo "========== DONE ==========="
+
+echo "========== verification ==========="
+[ -f /etc/os-release ] && echo "OS:               $(. /etc/os-release && echo "$PRETTY_NAME")"
+echo "Kernel Version:   $(uname -r)"
+
+echo -e "\n--- Software Versions ---"
+command -v docker >/dev/null 2>&1 && echo "Docker Version:   $(docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n 1)" || echo "Docker Version:   Not installed"
+command -v nvidia-ctk >/dev/null 2>&1 && echo "NVIDIA Toolkit:   $(nvidia-ctk --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -n 1)" || echo "NVIDIA Toolkit:   Not installed"
+
+{ command -v modinfo >/dev/null 2>&1 && modinfo nvidia >/dev/null 2>&1 && echo "NVIDIA Driver:    $(modinfo nvidia | grep ^version: | head -n 1 | awk '{print $2}')"; } || \
+{ command -v nvidia-smi >/dev/null 2>&1 && echo "NVIDIA Driver:    $(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -n 1)"; } || \
+echo "NVIDIA Driver:    Not loaded/installed"
+sudo docker run --rm --gpus all ubuntu:24.04 nvidia-smi
+echo "========== DONE NEED REBOOT ==========="
+
 
 cd ~
 #git clone https://github.com/amoghmunikote/cmpunlocker.git
