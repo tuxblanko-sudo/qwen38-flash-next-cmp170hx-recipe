@@ -54,8 +54,8 @@ echo "NVIDIA Driver:    Not loaded/installed"
 sudo docker run --rm --gpus all ubuntu:24.04 nvidia-smi
 echo "========== DONE NEED REBOOT ==========="
 
-echo "========== Install cmpunlocker ==========="
-cd ~
+#echo "========== Install cmpunlocker ==========="
+#cd ~
 #git clone https://github.com/amoghmunikote/cmpunlocker.git
 #cd cmpunlocker
 #sudo ./install.sh --no-iommu --no-passthrough
@@ -63,14 +63,14 @@ cd ~
 #cd ~/cmpunlocker
 #sudo ./verify.sh
 
-nvidia-smi \
-  --query-gpu=name,memory.total,pci.bus_id,pcie.link.gen.current,pcie.link.gen.max,pcie.link.width.current,pcie.link.width.max \
-  --format=csv
+#nvidia-smi \
+#  --query-gpu=name,memory.total,pci.bus_id,pcie.link.gen.current,pcie.link.gen.max,pcie.link.width.current,pcie.link.width.max \
+#  --format=csv
 
-echo "========== Install qwen38-flash-next-cmp170hx-recipe ==========="
-cd ~
-git clone https://github.com/Morrowmake/qwen38-flash-next-cmp170hx-recipe
-cd qwen38-flash-next-cmp170hx-recipe
-./start.sh
+#echo "========== Install qwen38-flash-next-cmp170hx-recipe ==========="
+#cd ~
+#git clone https://github.com/Morrowmake/qwen38-flash-next-cmp170hx-recipe
+#cd qwen38-flash-next-cmp170hx-recipe
+#./start.sh
 
 ```
