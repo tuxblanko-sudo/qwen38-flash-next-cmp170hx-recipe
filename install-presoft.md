@@ -51,7 +51,7 @@ command -v nvidia-ctk >/dev/null 2>&1 && echo "NVIDIA Toolkit:   $(nvidia-ctk --
 { command -v modinfo >/dev/null 2>&1 && modinfo nvidia >/dev/null 2>&1 && echo "NVIDIA Driver:    $(modinfo nvidia | grep ^version: | head -n 1 | awk '{print $2}')"; } || \
 { command -v nvidia-smi >/dev/null 2>&1 && echo "NVIDIA Driver:    $(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -n 1)"; } || \
 echo "NVIDIA Driver:    Not loaded/installed"
-sudo docker run --rm --gpus all ubuntu:24.04 nvidia-smi
+#sudo docker run --rm --gpus all ubuntu:24.04 nvidia-smi
 echo "========== DONE NEED REBOOT ==========="
 
 #echo "========== Install cmpunlocker ==========="
