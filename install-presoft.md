@@ -18,7 +18,9 @@ sudo apt install -y \
     gnupg \
     tar \
     xz-utils \
-    software-properties-common
+    software-properties-common \
+    jq \
+    util-linux
 
 echo "========== install docker ==========="
 curl -fsSL https://get.docker.com -o get-docker.sh
