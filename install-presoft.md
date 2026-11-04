@@ -18,13 +18,16 @@ sudo apt install -y \
     gnupg \
     tar \
     xz-utils \
-	software-properties-common
+    software-properties-common
+
 echo "========== install docker ==========="
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
+
 echo "========== install drivers nvidia ==========="
 sudo add-apt-repository -y multiverse
 sudo apt install -y nvidia-driver-615-open
+
 echo "========== install CUDA nvidia ==========="
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
@@ -49,7 +52,7 @@ echo "NVIDIA Driver:    Not loaded/installed"
 sudo docker run --rm --gpus all ubuntu:24.04 nvidia-smi
 echo "========== DONE NEED REBOOT ==========="
 
-
+echo "========== Install cmpunlocker ==========="
 cd ~
 #git clone https://github.com/amoghmunikote/cmpunlocker.git
 #cd cmpunlocker
@@ -62,6 +65,7 @@ nvidia-smi \
   --query-gpu=name,memory.total,pci.bus_id,pcie.link.gen.current,pcie.link.gen.max,pcie.link.width.current,pcie.link.width.max \
   --format=csv
 
+echo "========== Install qwen38-flash-next-cmp170hx-recipe ==========="
 cd ~
 git clone https://github.com/Morrowmake/qwen38-flash-next-cmp170hx-recipe
 cd qwen38-flash-next-cmp170hx-recipe
